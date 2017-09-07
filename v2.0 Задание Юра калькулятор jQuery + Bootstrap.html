@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Test</title>
+
+	<link href="v2.0 style.css" rel="stylesheet" type="text/css" />
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<head>
+<body>
+<div id="body">
+
+	<input type="text" id="display"/>
+
+ <div id="but_1">
+   <button value="7">7</button>
+   <button value="8">8</button>
+   <button value="9">9</button><br/>
+	 <button value="4">4</button>
+	 <button value="5">5</button>
+	 <button value="6">6</button><br/>
+	 <button value="1">1</button>
+	 <button value="2">2</button>
+	 <button value="3">3</button><br/>
+	 <button value="0" style="width: 95px">0</button>
+	 <button value=".">,</button>
+ </div>
+
+ <div id="but_2">
+	 <button value="+">+</button><br/>
+   <button value="-">-</button><br/>
+	 <button value="*">*</button><br/>
+   <button value="/">/</button>
+ </div>
+
+ <div id="but_3">
+	 <button id="backspace"><---</button><br/>
+	 <button id="reset">C</button><br/>
+	 <button id="ravno" style="height: 90px">=</button>
+ </div>
+
+</div>
+
+<script>
+
+// $('#display').bind("change keyup input click",function(){
+// 	if(this.value.match(/[^0-9 || /,*,-,+,]/g)){
+// 		this.value=this.value.replace(/[^0-9]/g,'');
+// 	}
+// });
+		
+   $("button").click(function () {
+     var text = $("#display").val() + $(this).val();
+     $("#display").val(text);
+   });
+
+	 $("#ravno").click(function () {
+			var result = eval($("#display").val());
+			 $("#display").val(result);
+		});
+
+		$("#reset").click(function () {
+			$("#display").val(null);
+ 		});
+
+		$("#backspace").click(function () {
+			var value = $("#display").val();
+			$("#display").val(value.substr(0, value.length - 1));
+		});
+
+		// event.preventDefault();
+		// console.log(event);
+
+		$(document).keydown(function () {
+			if (event.keyCode >=96 && event.keyCode<= 111 || event.keyCode >=48 && event.keyCode<= 57) {
+				var keytext = $("#display").val() + $(this).val();
+				$("#display").val(keytext + event.key);
+					}
+					else if (event.keyCode == 13) {
+						var result = eval($("#display").val());
+						 $("#display").val(result);
+					}
+					else if (event.keyCode == 8) {
+						var value = $("#display").val();
+						$("#display").val(value.substr(0, value.length - 1));
+					}
+			return true;
+});
+</script>
+
+</body>
+</html>
